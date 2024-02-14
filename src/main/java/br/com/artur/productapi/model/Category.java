@@ -1,6 +1,6 @@
 package br.com.artur.productapi.model;
 
-import br.com.artur.productapi.dto.CategoryDTO;
+import br.com.artur.shoppingclient.dto.CategoryDTO;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

@@ -49,6 +49,11 @@
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>br.com.artur</groupId>
+			<artifactId>shopping-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

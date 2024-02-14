@@ -1,6 +1,6 @@
 package br.com.artur.productapi.controller;
 
-import br.com.artur.productapi.dto.ProductDTO;
+import br.com.artur.shoppingclient.dto.ProductDTO;
 import br.com.artur.productapi.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 

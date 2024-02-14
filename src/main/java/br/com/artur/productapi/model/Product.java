@@ -1,6 +1,6 @@
 package br.com.artur.productapi.model;
 
-import br.com.artur.productapi.dto.ProductDTO;
+import br.com.artur.shoppingclient.dto.ProductDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,7 +29,7 @@ public class Product {
         product.setProductIdentifier(productDTO.getProductIdentifier());
         if(productDTO.getCategoryDTO() != null){
             product.setCategory(
-                Category.convert(productDTO.getCategoryDTO())
+                    Category.convert(productDTO.getCategoryDTO())
             );
         }
         return product;
