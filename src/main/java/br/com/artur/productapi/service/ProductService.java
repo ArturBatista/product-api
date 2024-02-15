@@ -1,9 +1,12 @@
 package br.com.artur.productapi.service;
 
 import br.com.artur.productapi.converter.DTOConverter;
+import br.com.artur.productapi.repository.CategoryRepository;
 import br.com.artur.shoppingclient.dto.ProductDTO;
 import br.com.artur.productapi.model.Product;
 import br.com.artur.productapi.repository.ProductRepository;
+import br.com.artur.shoppingclient.exception.CategoryNotFoundException;
+import br.com.artur.shoppingclient.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<ProductDTO> getAll(){
         List<Product> products = productRepository.findAll();
@@ -38,17 +43,27 @@ public class ProductService {
         if(product != null){
             return DTOConverter.convert(product);
         }
-        return null;
+        throw new ProductNotFoundException();
     }
 
     public ProductDTO save(ProductDTO productDTO){
+        boolean existsCategory = categoryRepository.existsById(productDTO.getCategoryDTO().getId());
+        if(!existsCategory){
+            throw new CategoryNotFoundException();
+        }
         Product product = productRepository.save(Product.convert(productDTO));
         return DTOConverter.convert(product);
     }
 
-    public void delete(long productId){
+    public void delete(long productId) throws ProductNotFoundException{
         Optional<Product> product = productRepository.findById(productId);
-        product.ifPresent(value -> productRepository.delete(value));
+
+        if(product.isPresent()){
+            productRepository.delete(product.get());
+        }
+
+        throw new ProductNotFoundException();
+
     }
 
 }

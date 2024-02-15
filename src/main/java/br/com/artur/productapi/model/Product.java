@@ -2,6 +2,7 @@ package br.com.artur.productapi.model;
 
 import br.com.artur.shoppingclient.dto.ProductDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class Product {
     private String nome;
     private Float preco;
     private String descricao;
+    @NotBlank
     private String productIdentifier;
     @ManyToOne
     @JoinColumn(name = "category_id")
